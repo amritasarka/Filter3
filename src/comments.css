@@ -1,0 +1,35 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+   
+    
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: #6bd8ee;
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  .search-main input{
+    width: 100%;
+    height: 50px;
+    
+  }
+  .maindiv{
+    display: flex;
+    
+  }
+  .slider{
+    
+  }
+  .pslider{
+    margin-left: 5%;
+  }
