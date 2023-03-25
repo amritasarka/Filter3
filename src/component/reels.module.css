@@ -1,0 +1,74 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 250px;
+  height: 300px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cardmedia {
+  width: 100%;
+  height: 70%;
+  margin-bottom: 10px;
+}
+
+.cardmedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardcontent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 30%;
+}
+
+.cardtitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.cardactions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+}
+
+.cardlikes,
+.cardcomments {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #333;
+}
+
+.cardlikes i,
+.cardcomments i {
+  margin-right: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    margin: 10px;
+  }
+}
