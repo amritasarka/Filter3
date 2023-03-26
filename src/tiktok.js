@@ -109,12 +109,12 @@ const Tiktok = () => {
   const playcounthandleChange = (event, newValue) => {
     setPlaycountvalue(newValue);
   };
-  console.log("playcountvalue",playcountvalue);
+  console.log("playcountvalue", playcountvalue);
   const [downloadcountvalue, setDownloadcountvalue] = React.useState([23, 37]);
   const downloadcounthandleChange = (event, newValue) => {
     setDownloadcountvalue(newValue);
   };
-  console.log("downloadvalue",downloadcountvalue);
+  console.log("downloadvalue", downloadcountvalue);
   const [engagementvalue, setEngagementvalue] = React.useState([23, 37]);
   const engagementhandleChange = (event, newValue) => {
     setEngagementvalue(newValue);
@@ -130,87 +130,151 @@ const Tiktok = () => {
     console.log("To date changed:", event.target.value);
     setToDate(event.target.value);
   };
-  const applyFilters = () => {
-    let updatedList = newmap;
-  
-    // Insta Filter for likes
-    if (likevalue[0] !== "" && likevalue[1] !== "" && !isNaN(likevalue[0]) && !isNaN(likevalue[1])) {
-      const minlikes = likevalue[0];
-      const maxlikes = likevalue[1];
-  
-      // filter only if likes field is present
-      updatedList = updatedList.filter(
-        (item) => item.hasOwnProperty('likes') && item.likes !== null && item.likes >= minlikes && item.likes <= maxlikes
-      );
-    }
-   
-  
-    // Insta Filter for comments
-    if (commentvalue[0] !== "" && commentvalue[1] !== "" && !isNaN(commentvalue[0]) && !isNaN(commentvalue[1])) {
-      const mincomments = commentvalue[0];
-      const maxcomments = commentvalue[1];
-  
-      // filter only if comments field is present
-      updatedList = updatedList.filter(
-        (item) => item.hasOwnProperty('comments') && item.comments !== null && item.comments >= mincomments && item.comments <= maxcomments
-      );
-    }
-    
-    // Insta Filter for sharecount
-    if (sharecountvalue[0] !== "" && sharecountvalue[1] !== "" && !isNaN(sharecountvalue[0]) && !isNaN(sharecountvalue[1])) {
-      const minshare = sharecountvalue[0];
-      const maxshare = sharecountvalue[1];
-  
-      // filter only if sharecount field is present
-      updatedList = updatedList.filter(
-        (item) => item.hasOwnProperty('sharecount') && item.sharecount !== null && item.sharecount >= minshare && item.sharecount <= maxshare
-      );
-    }
-    
-  
-    // Insta Filter for playcount
-    if (playcountvalue[0] !== "" && playcountvalue[1] !== "" && !isNaN(playcountvalue[0]) && !isNaN(playcountvalue[1])) {
-      const minplaycount = playcountvalue[0];
-      const maxplaycount = playcountvalue[1];
-  
-      // filter only if playcount field is present
-      updatedList = updatedList.filter(
-        (item) => item.hasOwnProperty('playcount') && item.playcount !== null && item.playcount >= minplaycount && item.playcount <= maxplaycount
-      );
-    }
-   
-  
-    // Insta Filter for engagement
-    if (engagementvalue[0] !== "" && engagementvalue[1] !== "" && !isNaN(engagementvalue[0]) && !isNaN(engagementvalue[1])) {
-      const minengagement = engagementvalue[0];
-      const maxengagement = engagementvalue[1];
-  
-      // filter only if engagement field is present
-      updatedList = updatedList.filter(
-        (item) => item.hasOwnProperty('engagement') && item.engagement !== null && item.engagement >= minengagement && item.engagement <= maxengagement
-      );
-    }
-   
  
 
+  const applyFilters = () => {
+    let updatedList = newmap;
 
+    // Insta Filter for likes
+    if (
+      likevalue[0] !== "" &&
+      likevalue[1] !== "" &&
+      !isNaN(likevalue[0]) &&
+      !isNaN(likevalue[1])
+    ) {
+      const minlikes = likevalue[0];
+      const maxlikes = likevalue[1];
 
+      // filter only if likes field is present
+      updatedList = updatedList.filter(
+        (item) =>
+          item.hasOwnProperty("likes") &&
+          item.likes !== null &&
+          item.likes >= minlikes &&
+          item.likes <= maxlikes
+      );
+    }
+
+    // Insta Filter for comments
+    if (
+      commentvalue[0] !== "" &&
+      commentvalue[1] !== "" &&
+      !isNaN(commentvalue[0]) &&
+      !isNaN(commentvalue[1])
+    ) {
+      const mincomments = commentvalue[0];
+      const maxcomments = commentvalue[1];
+
+      // filter only if comments field is present
+      updatedList = updatedList.filter(
+        (item) =>
+          item.hasOwnProperty("comments") &&
+          item.comments !== null &&
+          item.comments >= mincomments &&
+          item.comments <= maxcomments
+      );
+    }
+
+    if (socialmedia_type === "tiktok") {
+      // Insta Filter for sharecount
+      if (
+        sharecountvalue[0] !== "" &&
+        sharecountvalue[1] !== "" &&
+        !isNaN(sharecountvalue[0]) &&
+        !isNaN(sharecountvalue[1])
+      ) {
+        const minshare = sharecountvalue[0];
+        const maxshare = sharecountvalue[1];
+
+        // filter only if sharecount field is present
+        updatedList = updatedList.filter(
+          (item) =>
+            item.hasOwnProperty("sharecount") &&
+            item.sharecount !== null &&
+            item.sharecount >= minshare &&
+            item.sharecount <= maxshare
+        );
+      }
+    }
+
+    if (socialmedia_type === "tiktok") {
+      // Insta Filter for playcount
+      if (
+        playcountvalue[0] !== "" &&
+        playcountvalue[1] !== "" &&
+        !isNaN(playcountvalue[0]) &&
+        !isNaN(playcountvalue[1])
+      ) {
+        const minplaycount = playcountvalue[0];
+        const maxplaycount = playcountvalue[1];
+
+        // filter only if playcount field is present
+        updatedList = updatedList.filter(
+          (item) =>
+            item.hasOwnProperty("playcount") &&
+            item.playcount !== null &&
+            item.playcount >= minplaycount &&
+            item.playcount <= maxplaycount
+        );
+      }
+    }
+
+    // Insta Filter for engagement
+    if (
+      engagementvalue[0] !== "" &&
+      engagementvalue[1] !== "" &&
+      !isNaN(engagementvalue[0]) &&
+      !isNaN(engagementvalue[1])
+    ) {
+      const minengagement = engagementvalue[0];
+      const maxengagement = engagementvalue[1];
+
+      // filter only if engagement field is present
+      updatedList = updatedList.filter(
+        (item) =>
+          item.hasOwnProperty("engagement") &&
+          item.engagement !== null &&
+          item.engagement >= minengagement &&
+          item.engagement <= maxengagement
+      );
+    }
+
+    if (socialmedia_type === "tiktok") {
+      // Insta Filter for downloadcount
+      if (
+        downloadcountvalue[0] !== "" &&
+        downloadcountvalue[1] !== "" &&
+        !isNaN(downloadcountvalue[0]) &&
+        !isNaN(downloadcountvalue[1])
+      ) {
+        const mindownloadcount = downloadcountvalue[0];
+        const maxdownloadcount = downloadcountvalue[1];
+
+        // filter only if downloadcount field is present
+        updatedList = updatedList.filter(
+          (item) =>
+            item.hasOwnProperty("downloadcount") &&
+            item.downloadcount !== null &&
+            item.downloadcount >= mindownloadcount &&
+            item.downloadcount <= maxdownloadcount
+        );
+      }
+    }
 
     if (fromDate && toDate) {
       const minD = fromDate;
       const maxD = toDate;
-  
+
       updatedList = updatedList.filter(
         (item) => item.date >= minD && item.date <= maxD
       );
     }
-  
+
     setList(updatedList);
   };
-  
-  
-  console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",list)
- 
+
+  console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", list);
+
   useEffect(() => {
     applyFilters();
   }, [
@@ -218,11 +282,12 @@ const Tiktok = () => {
     commentvalue,
     fromDate,
     toDate,
-    // downloadcountvalue,
+    downloadcountvalue,
     sharecountvalue,
     playcountvalue,
     engagementvalue,
   ]);
+
 
   console.log("this is list value", list);
 
