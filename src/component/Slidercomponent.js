@@ -3,11 +3,10 @@ import React from 'react'
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 
-
 const Slidercomponent = ({ value, min, max, onChange }) => {
   return (
     <Box sx={{ width: 100 }} className="slider">
-    <Slider 
+    <Slider
       value={value}
       onChange={onChange}
       valueLabelDisplay="auto"
@@ -19,10 +18,4 @@ const Slidercomponent = ({ value, min, max, onChange }) => {
 }
 
 export default Slidercomponent
-
-
-
-
-
-
 

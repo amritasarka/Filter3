@@ -10,12 +10,12 @@ import tiktok from "./tiktokData.json";
 
 import Datecomponent from "./component/datecomponent";
 
+
 import "./tiktok.css";
 
 const Tiktok = () => {
   const [showSlider, setShowSlider] = useState(false);
   const [isFiltered, setIsFiltered] = useState(false);
-  const [map, setMap] = useState([]);
 
   const [newmap, setNewmap] = useState([]);
   const [list, setList] = useState();
@@ -130,7 +130,6 @@ const Tiktok = () => {
     console.log("To date changed:", event.target.value);
     setToDate(event.target.value);
   };
- 
 
   const applyFilters = () => {
     let updatedList = newmap;
@@ -174,7 +173,7 @@ const Tiktok = () => {
           item.comments <= maxcomments
       );
     }
-
+   
     if (socialmedia_type === "tiktok") {
       // Insta Filter for sharecount
       if (
@@ -288,7 +287,6 @@ const Tiktok = () => {
     engagementvalue,
   ]);
 
-
   console.log("this is list value", list);
 
   const sliderArray = [
@@ -342,6 +340,11 @@ const Tiktok = () => {
       name: "Engagement",
     },
   ];
+
+
+ 
+  
+  
 
   const ontiktokclick = () => {
     setSocialmedia_type("tiktok");
@@ -429,7 +432,38 @@ const Tiktok = () => {
 
   return (
     <>
-      <div className={`container ${isFiltered ? "shifted-left" : ""}`}>
+ 
+
+      <div
+        className={`slider-containerr ${showSlider ? "show" : "hide"}`}
+        // {`slider-container ${showSlider ? "show" : "hide"}`}
+      >
+        {sliderArray.map((item) => (
+          <>
+            <div className="newslidercontainer">
+              <div className="pslider">{item.name}</div>
+              <div className="psliderr">
+                <Slidercomponent
+                  value={item.value}
+                  onChange={item.handlechange}
+                  min={item.min}
+                  max={item.max}
+                />
+              </div>
+            </div>
+          </>
+        ))}
+        <div className="sliderbottomdate">
+          <Datecomponent
+            value1={fromDate}
+            value2={toDate}
+            onChange1={handleFromDateChange}
+            onChange2={handleToDateChange}
+          />
+        </div>
+      </div>
+      <div className={`container ${isFiltered ? "shifted-down" : ""}`}>
+
         <Header
           ontiktokclick={ontiktokclick}
           oninstagramclick={oninstagramclick}
@@ -439,7 +473,10 @@ const Tiktok = () => {
         </div>
         <Tiktokheader item={middlearray} />
 
-        <Filterbutton onClick={handleButtonClick} />
+        <Filterbutton
+
+        onClick={handleButtonClick}
+        />
 
         <div className="mainreelscontainer">
           <div className="reelscontainer">
@@ -457,26 +494,7 @@ const Tiktok = () => {
         </div>
       </div>
 
-      <div className={`slider-container ${showSlider ? "show" : "hide"}`}>
-        {sliderArray.map((item) => (
-          <>
-            <p className="pslider">{item.name}</p>
-            <Slidercomponent
-              value={item.value}
-              onChange={item.handlechange}
-              min={item.min}
-              max={item.max}
-            />
-          </>
-        ))}
-
-        <Datecomponent
-          value1={fromDate}
-          value2={toDate}
-          onChange1={handleFromDateChange}
-          onChange2={handleToDateChange}
-        />
-      </div>
+      
     </>
   );
 };

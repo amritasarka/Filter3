@@ -130,6 +130,7 @@
   justify-content: space-between;
   margin-bottom: 20px;
   font-size: 12px; 
+  width:60%
 }
 
 .datepicker label {
