@@ -10,8 +10,8 @@ import tiktok from "./tiktokData.json";
 
 import Datecomponent from "./component/datecomponent";
 
-
 import "./tiktok.css";
+import Descending from "./component/descending";
 
 const Tiktok = () => {
   const [showSlider, setShowSlider] = useState(false);
@@ -25,6 +25,43 @@ const Tiktok = () => {
   const [toDate, setToDate] = useState(new Date());
 
   let [socialmedia_type, setSocialmedia_type] = useState("tiktok");
+  const [sortByPlatform, setSortByPlatform] = useState("tiktok");
+  const [sortByFields, setSortByFields] = useState(["date"]);
+  const [sortOrder, setSortOrder] = useState("descending");
+  const [sortedPosts, setSortedPosts] = useState([]);
+  const [postsData, setPostData] = useState([]);
+
+  useEffect(() => {
+    const filteredPosts = newmap.filter(
+      (post) => post.platform === sortByPlatform
+    );
+    const sortedFilteredPosts = filteredPosts.sort((a, b) => {
+      for (const field of sortByFields) {
+        if (a[field] < b[field]) {
+          return sortOrder === "ascending" ? -1 : 1;
+        } else if (a[field] > b[field]) {
+          return sortOrder === "ascending" ? 1 : -1;
+        }
+      }
+      return 0;
+    });
+
+    setSortedPosts(sortedFilteredPosts);
+  }, [sortByPlatform, sortByFields, sortOrder]);
+
+  const handleSort = (platformFields) => {
+    const [platform, fields] = platformFields;
+    if (
+      JSON.stringify(platform) === JSON.stringify(sortByPlatform) &&
+      JSON.stringify(fields) === JSON.stringify(sortByFields)
+    ) {
+      setSortOrder(sortOrder === "ascending" ? "descending" : "ascending");
+    } else {
+      setSortByPlatform(platform);
+      setSortByFields(fields);
+      setSortOrder("descending");
+    }
+  };
 
   const socialmedia_data = {
     tiktok: tiktok,
@@ -88,38 +125,91 @@ const Tiktok = () => {
   const maxEngagement = Math.max(...engagementarr);
   const minEngagement = Math.min(...engagementarr);
 
-  const [likevalue, setLikevalue] = React.useState([23, 37]);
-  const likehandleChange = (event, newValue) => {
-    setLikevalue(newValue);
+  const [likeminvalue, setLikeminvalue] = React.useState(27);
+  const likeminhandleChange = (event) => {
+    const value = Math.min(Number(event.target.value));
+    setLikeminvalue(value);
   };
-  console.log(likevalue);
+  console.log(likeminvalue);
+  const [likemaxvalue, setLikemaxvalue] = React.useState(1045);
+  const likemaxhandleChange = (event) => {
+    const value = Math.max(Number(event.target.value));
+    setLikemaxvalue(value);
+  };
+  console.log(likemaxvalue);
 
-  const [commentvalue, setCommentvalue] = React.useState([20, 500]);
-  const commenthandleChange = (event, newValue) => {
-    setCommentvalue(newValue);
+  const [commentminvalue, setCommentminvalue] = React.useState(20);
+  const commentminhandleChange = (event) => {
+    const value = Math.min(Number(event.target.value));
+    setCommentminvalue(value);
+  };
+  const [commentmaxvalue, setCommentmaxvalue] = React.useState(1000);
+  const commentmaxhandleChange = (event) => {
+    const value = Math.max(Number(event.target.value));
+
+    setCommentmaxvalue(value);
   };
 
-  const [sharecountvalue, setSharecountvalue] = React.useState([23, 37]);
-  const sharecounthandleChange = (event, newValue) => {
-    setSharecountvalue(newValue);
-  };
-  console.log(sharecountvalue);
+  const [sharecountminvalue, setSharecountminvalue] = React.useState(23);
+  const sharecountminhandleChange = (event) => {
+    const value = Math.min(Number(event.target.value));
 
-  const [playcountvalue, setPlaycountvalue] = React.useState([23, 37]);
-  const playcounthandleChange = (event, newValue) => {
-    setPlaycountvalue(newValue);
+    setSharecountminvalue(value);
   };
-  console.log("playcountvalue", playcountvalue);
-  const [downloadcountvalue, setDownloadcountvalue] = React.useState([23, 37]);
-  const downloadcounthandleChange = (event, newValue) => {
-    setDownloadcountvalue(newValue);
+  console.log(sharecountminvalue);
+  const [sharecountmaxvalue, setSharecountmaxvalue] = React.useState(103);
+  const sharecountmaxhandleChange = (event) => {
+    const value = Math.max(Number(event.target.value));
+
+    setSharecountmaxvalue(value);
   };
-  console.log("downloadvalue", downloadcountvalue);
-  const [engagementvalue, setEngagementvalue] = React.useState([23, 37]);
-  const engagementhandleChange = (event, newValue) => {
-    setEngagementvalue(newValue);
+  console.log(sharecountmaxvalue);
+
+  const [playcountminvalue, setPlaycountminvalue] = React.useState(23);
+  const playcountminhandleChange = (event) => {
+    const value = Math.min(Number(event.target.value));
+
+    setPlaycountminvalue(value);
   };
-  console.log(engagementvalue);
+  console.log("playcountvalue", playcountminvalue);
+  const [playcountmaxvalue, setPlaycountmaxvalue] = React.useState(103);
+  const playcountmaxhandleChange = (event) => {
+    const value = Math.max(Number(event.target.value));
+
+    setPlaycountmaxvalue(value);
+  };
+  console.log("playcountvalue", playcountmaxvalue);
+
+  const [downloadcountminvalue, setDownloadcountminvalue] = React.useState(23);
+  const downloadcountminhandleChange = (event) => {
+    const value = Math.min(Number(event.target.value));
+
+    setDownloadcountminvalue(value);
+  };
+  console.log("downloadvalue", downloadcountminvalue);
+  const [downloadcountmaxvalue, setDownloadcountmaxvalue] = React.useState(103);
+  const downloadcountmaxhandleChange = (event) => {
+    const value = Math.max(Number(event.target.value));
+
+    setDownloadcountmaxvalue(value);
+  };
+  console.log("downloadvalue", downloadcountmaxvalue);
+
+  const [engagemenminvalue, setEngagementminvalue] = React.useState(23);
+  const engagementminhandleChange = (event) => {
+    const value = Math.min(Number(event.target.value));
+
+    setEngagementminvalue(value);
+  };
+  console.log(engagemenminvalue);
+
+  const [engagementmaxvalue, setEngagementmaxvalue] = React.useState(103);
+  const engagementmaxhandleChange = (event) => {
+    const value = Math.max(Number(event.target.value));
+
+    setEngagementmaxvalue(value);
+  };
+  console.log(engagementmaxvalue);
 
   const handleFromDateChange = (event) => {
     console.log("From date changed:", event.target.value);
@@ -136,13 +226,13 @@ const Tiktok = () => {
 
     // Insta Filter for likes
     if (
-      likevalue[0] !== "" &&
-      likevalue[1] !== "" &&
-      !isNaN(likevalue[0]) &&
-      !isNaN(likevalue[1])
+      likeminvalue !== "" &&
+      likemaxvalue !== "" &&
+      !isNaN(likeminvalue) &&
+      !isNaN(likemaxvalue)
     ) {
-      const minlikes = likevalue[0];
-      const maxlikes = likevalue[1];
+      const minlikes = likeminvalue;
+      const maxlikes = likemaxvalue;
 
       // filter only if likes field is present
       updatedList = updatedList.filter(
@@ -156,13 +246,13 @@ const Tiktok = () => {
 
     // Insta Filter for comments
     if (
-      commentvalue[0] !== "" &&
-      commentvalue[1] !== "" &&
-      !isNaN(commentvalue[0]) &&
-      !isNaN(commentvalue[1])
+      commentminvalue !== "" &&
+      commentmaxvalue !== "" &&
+      !isNaN(commentminvalue) &&
+      !isNaN(commentmaxvalue)
     ) {
-      const mincomments = commentvalue[0];
-      const maxcomments = commentvalue[1];
+      const mincomments = commentminvalue;
+      const maxcomments = commentmaxvalue;
 
       // filter only if comments field is present
       updatedList = updatedList.filter(
@@ -173,17 +263,17 @@ const Tiktok = () => {
           item.comments <= maxcomments
       );
     }
-   
+
     if (socialmedia_type === "tiktok") {
       // Insta Filter for sharecount
       if (
-        sharecountvalue[0] !== "" &&
-        sharecountvalue[1] !== "" &&
-        !isNaN(sharecountvalue[0]) &&
-        !isNaN(sharecountvalue[1])
+        sharecountminvalue !== "" &&
+        sharecountmaxvalue !== "" &&
+        !isNaN(sharecountminvalue) &&
+        !isNaN(sharecountmaxvalue)
       ) {
-        const minshare = sharecountvalue[0];
-        const maxshare = sharecountvalue[1];
+        const minshare = sharecountminvalue;
+        const maxshare = sharecountmaxvalue;
 
         // filter only if sharecount field is present
         updatedList = updatedList.filter(
@@ -199,13 +289,13 @@ const Tiktok = () => {
     if (socialmedia_type === "tiktok") {
       // Insta Filter for playcount
       if (
-        playcountvalue[0] !== "" &&
-        playcountvalue[1] !== "" &&
-        !isNaN(playcountvalue[0]) &&
-        !isNaN(playcountvalue[1])
+        playcountminvalue !== "" &&
+        playcountmaxvalue !== "" &&
+        !isNaN(playcountminvalue) &&
+        !isNaN(playcountmaxvalue)
       ) {
-        const minplaycount = playcountvalue[0];
-        const maxplaycount = playcountvalue[1];
+        const minplaycount = playcountminvalue;
+        const maxplaycount = playcountmaxvalue;
 
         // filter only if playcount field is present
         updatedList = updatedList.filter(
@@ -220,13 +310,13 @@ const Tiktok = () => {
 
     // Insta Filter for engagement
     if (
-      engagementvalue[0] !== "" &&
-      engagementvalue[1] !== "" &&
-      !isNaN(engagementvalue[0]) &&
-      !isNaN(engagementvalue[1])
+      engagemenminvalue !== "" &&
+      engagementmaxvalue !== "" &&
+      !isNaN(engagemenminvalue) &&
+      !isNaN(engagementmaxvalue)
     ) {
-      const minengagement = engagementvalue[0];
-      const maxengagement = engagementvalue[1];
+      const minengagement = engagemenminvalue;
+      const maxengagement = engagementmaxvalue;
 
       // filter only if engagement field is present
       updatedList = updatedList.filter(
@@ -241,13 +331,13 @@ const Tiktok = () => {
     if (socialmedia_type === "tiktok") {
       // Insta Filter for downloadcount
       if (
-        downloadcountvalue[0] !== "" &&
-        downloadcountvalue[1] !== "" &&
-        !isNaN(downloadcountvalue[0]) &&
-        !isNaN(downloadcountvalue[1])
+        downloadcountminvalue !== "" &&
+        downloadcountmaxvalue !== "" &&
+        !isNaN(downloadcountminvalue) &&
+        !isNaN(downloadcountmaxvalue)
       ) {
-        const mindownloadcount = downloadcountvalue[0];
-        const maxdownloadcount = downloadcountvalue[1];
+        const mindownloadcount = downloadcountminvalue;
+        const maxdownloadcount = downloadcountmaxvalue;
 
         // filter only if downloadcount field is present
         updatedList = updatedList.filter(
@@ -277,74 +367,161 @@ const Tiktok = () => {
   useEffect(() => {
     applyFilters();
   }, [
-    likevalue,
-    commentvalue,
+    likeminvalue,
+    likemaxvalue,
+    commentminvalue,
+    commentmaxvalue,
     fromDate,
     toDate,
-    downloadcountvalue,
-    sharecountvalue,
-    playcountvalue,
-    engagementvalue,
+    downloadcountminvalue,
+    downloadcountmaxvalue,
+    sharecountminvalue,
+    sharecountmaxvalue,
+    playcountminvalue,
+    playcountmaxvalue,
+    engagemenminvalue,
+    engagementmaxvalue,
   ]);
 
   console.log("this is list value", list);
 
-  const sliderArray = [
+  // const sliderArray = [
+  //   {
+  //     id: 1,
+  //     value1: likeminvalue,
+  //     value2: likemaxvalue,
+  //     handlechange1: likeminhandleChange,
+  //     handlechange2: likemaxhandleChange,
+  //     min: minLikes,
+  //     max: maxLikes,
+  //     name: "likes",
+  //   },
+
+  //   {
+  //     id: 2,
+  //     value1: commentminvalue,
+  //     value2: commentmaxvalue,
+  //     handlechange1: commentminhandleChange,
+
+  //     handlechange2: commentmaxhandleChange,
+  //     min: minComments,
+  //     max: maxComments,
+  //     name: "Comments",
+  //   },
+  //   {
+  //     id: 3,
+  //     value1: sharecountminvalue,
+  //     value2: sharecountmaxvalue,
+  //     handlechange1: sharecountminhandleChange,
+  //     handlechange2: sharecountmaxhandleChange,
+
+  //     min: minSharecount,
+  //     max: maxSharecount,
+  //     name: "sharecount",
+  //   },
+  //   {
+  //     id: 4,
+  //     value1: downloadcountminvalue,
+  //     value2: downloadcountmaxvalue,
+  //     handlechange1: downloadcountminhandleChange,
+  //     handlechange2: downloadcountmaxhandleChange,
+  //     min: minDownloadcount,
+  //     max: maxDownloadcount,
+  //     name: "downloadcount",
+  //   },
+  //   {
+  //     id: 5,
+  //     value1: playcountminvalue,
+  //     value2: playcountmaxvalue,
+  //     handlechange1: playcountminhandleChange,
+  //     handlechange2: playcountmaxhandleChange,
+  //     min: minPlaycount,
+  //     max: maxPlaycount,
+  //     name: "playcount",
+  //   },
+  //   {
+  //     id: 6,
+  //     value1: engagemenminvalue,
+  //     value2: engagementmaxvalue,
+  //     handlechange1: engagementminhandleChange,
+  //     handlechange2: engagementmaxhandleChange,
+  //     min: minEngagement,
+  //     max: maxEngagement,
+  //     name: "Engagement",
+  //   },
+  // ];
+
+  const commonFields = [
     {
       id: 1,
-      value: likevalue,
-      handlechange: likehandleChange,
+      value1: likeminvalue,
+      value2: likemaxvalue,
+      handlechange1: likeminhandleChange,
+      handlechange2: likemaxhandleChange,
       min: minLikes,
       max: maxLikes,
       name: "likes",
     },
-
     {
       id: 2,
-      value: commentvalue,
-      handlechange: commenthandleChange,
+      value1: commentminvalue,
+      value2: commentmaxvalue,
+      handlechange1: commentminhandleChange,
+      handlechange2: commentmaxhandleChange,
       min: minComments,
       max: maxComments,
       name: "Comments",
     },
     {
       id: 3,
-      value: sharecountvalue,
-      handlechange: sharecounthandleChange,
-      min: minSharecount,
-      max: maxSharecount,
-      name: "sharecount",
-    },
-    {
-      id: 4,
-      value: downloadcountvalue,
-      handlechange: downloadcounthandleChange,
-      min: minDownloadcount,
-      max: maxDownloadcount,
-      name: "downloadcount",
-    },
-    {
-      id: 5,
-      value: playcountvalue,
-      handlechange: playcounthandleChange,
-      min: minPlaycount,
-      max: maxPlaycount,
-      name: "playcount",
-    },
-    {
-      id: 6,
-      value: engagementvalue,
-      handlechange: engagementhandleChange,
+      value1: engagemenminvalue,
+      value2: engagementmaxvalue,
+      handlechange1: engagementminhandleChange,
+      handlechange2: engagementmaxhandleChange,
       min: minEngagement,
       max: maxEngagement,
       name: "Engagement",
     },
   ];
 
+  const instagramFields = [...commonFields];
 
- 
-  
-  
+  const tiktokFields = [
+    ...commonFields,
+    {
+      id: 4,
+      value1: sharecountminvalue,
+      value2: sharecountmaxvalue,
+      handlechange1: sharecountminhandleChange,
+      handlechange2: sharecountmaxhandleChange,
+
+      min: minSharecount,
+      max: maxSharecount,
+      name: "sharecount",
+    },
+    {
+      id: 5,
+      value1: downloadcountminvalue,
+      value2: downloadcountmaxvalue,
+      handlechange1: downloadcountminhandleChange,
+      handlechange2: downloadcountmaxhandleChange,
+      min: minDownloadcount,
+      max: maxDownloadcount,
+      name: "downloadcount",
+    },
+    {
+      id: 6,
+      value1: playcountminvalue,
+      value2: playcountmaxvalue,
+      handlechange1: playcountminhandleChange,
+      handlechange2: playcountmaxhandleChange,
+      min: minPlaycount,
+      max: maxPlaycount,
+      name: "playcount",
+    },
+  ];
+  const fieldsToDisplay =
+    socialmedia_type === "instagram" ? instagramFields : tiktokFields;
 
   const ontiktokclick = () => {
     setSocialmedia_type("tiktok");
@@ -403,6 +580,8 @@ const Tiktok = () => {
     setNewmap(onedimension);
   };
 
+  console.log("newmap", newmap);
+
   useEffect(() => {
     setData(socialmedia_data[socialmedia_type]);
   }, [socialmedia_data, socialmedia_type]);
@@ -432,20 +611,20 @@ const Tiktok = () => {
 
   return (
     <>
- 
-
       <div
         className={`slider-containerr ${showSlider ? "show" : "hide"}`}
         // {`slider-container ${showSlider ? "show" : "hide"}`}
       >
-        {sliderArray.map((item) => (
+        {fieldsToDisplay.map((item) => (
           <>
             <div className="newslidercontainer">
               <div className="pslider">{item.name}</div>
               <div className="psliderr">
                 <Slidercomponent
-                  value={item.value}
-                  onChange={item.handlechange}
+                  value1={item.value1}
+                  value2={item.value2}
+                  onChange1={item.handlechange1}
+                  onChange2={item.handlechange2}
                   min={item.min}
                   max={item.max}
                 />
@@ -463,7 +642,6 @@ const Tiktok = () => {
         </div>
       </div>
       <div className={`container ${isFiltered ? "shifted-down" : ""}`}>
-
         <Header
           ontiktokclick={ontiktokclick}
           oninstagramclick={oninstagramclick}
@@ -472,10 +650,14 @@ const Tiktok = () => {
           <div className="colorrize">{socialmedia_type}</div>
         </div>
         <Tiktokheader item={middlearray} />
-
-        <Filterbutton
-
-        onClick={handleButtonClick}
+        <Filterbutton onClick={handleButtonClick} />
+        <Descending
+          socialmedia_type={socialmedia_type}
+          sortByPlatform={sortByPlatform}
+          sortByFields={sortByFields}
+          sortOrder={sortOrder}
+          sortedPosts={sortedPosts}
+          handleSort={handleSort}
         />
 
         <div className="mainreelscontainer">
@@ -493,8 +675,6 @@ const Tiktok = () => {
           </div>
         </div>
       </div>
-
-      
     </>
   );
 };
