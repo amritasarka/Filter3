@@ -3,7 +3,14 @@ import Filterbutton from "./component/Filterbutton";
 import Slidercomponent from "./component/Slidercomponent";
 import Tiktokheader from "./component/tiktokheader";
 import ReelsCard from "./component/Reelscard";
-import { faHeart, faComment } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHeart,
+  faComment,
+  faPlayCircle,
+  faShareSquare,
+  faDownload,
+  faChartLine,
+} from "@fortawesome/free-solid-svg-icons";
 import Header from "./component/header";
 import instagram from "./instadata_v5.json";
 import tiktok from "./tiktokData.json";
@@ -29,13 +36,12 @@ const Tiktok = () => {
   const [sortByFields, setSortByFields] = useState(["date"]);
   const [sortOrder, setSortOrder] = useState("descending");
   const [sortedPosts, setSortedPosts] = useState([]);
-  const [postsData, setPostData] = useState([]);
 
   useEffect(() => {
     const filteredPosts = newmap.filter(
       (post) => post.platform === sortByPlatform
     );
-    const sortedFilteredPosts = filteredPosts.sort((a, b) => {
+    const sortedFilteredPosts = newmap.sort((a, b) => {
       for (const field of sortByFields) {
         if (a[field] < b[field]) {
           return sortOrder === "ascending" ? -1 : 1;
@@ -359,7 +365,8 @@ const Tiktok = () => {
       );
     }
 
-    setList(updatedList);
+    // setList(updatedList);
+    setSortedPosts(updatedList);
   };
 
   console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh", list);
@@ -385,71 +392,7 @@ const Tiktok = () => {
 
   console.log("this is list value", list);
 
-  // const sliderArray = [
-  //   {
-  //     id: 1,
-  //     value1: likeminvalue,
-  //     value2: likemaxvalue,
-  //     handlechange1: likeminhandleChange,
-  //     handlechange2: likemaxhandleChange,
-  //     min: minLikes,
-  //     max: maxLikes,
-  //     name: "likes",
-  //   },
-
-  //   {
-  //     id: 2,
-  //     value1: commentminvalue,
-  //     value2: commentmaxvalue,
-  //     handlechange1: commentminhandleChange,
-
-  //     handlechange2: commentmaxhandleChange,
-  //     min: minComments,
-  //     max: maxComments,
-  //     name: "Comments",
-  //   },
-  //   {
-  //     id: 3,
-  //     value1: sharecountminvalue,
-  //     value2: sharecountmaxvalue,
-  //     handlechange1: sharecountminhandleChange,
-  //     handlechange2: sharecountmaxhandleChange,
-
-  //     min: minSharecount,
-  //     max: maxSharecount,
-  //     name: "sharecount",
-  //   },
-  //   {
-  //     id: 4,
-  //     value1: downloadcountminvalue,
-  //     value2: downloadcountmaxvalue,
-  //     handlechange1: downloadcountminhandleChange,
-  //     handlechange2: downloadcountmaxhandleChange,
-  //     min: minDownloadcount,
-  //     max: maxDownloadcount,
-  //     name: "downloadcount",
-  //   },
-  //   {
-  //     id: 5,
-  //     value1: playcountminvalue,
-  //     value2: playcountmaxvalue,
-  //     handlechange1: playcountminhandleChange,
-  //     handlechange2: playcountmaxhandleChange,
-  //     min: minPlaycount,
-  //     max: maxPlaycount,
-  //     name: "playcount",
-  //   },
-  //   {
-  //     id: 6,
-  //     value1: engagemenminvalue,
-  //     value2: engagementmaxvalue,
-  //     handlechange1: engagementminhandleChange,
-  //     handlechange2: engagementmaxhandleChange,
-  //     min: minEngagement,
-  //     max: maxEngagement,
-  //     name: "Engagement",
-  //   },
-  // ];
+ 
 
   const commonFields = [
     {
@@ -595,53 +538,41 @@ const Tiktok = () => {
   }, [socialmedia_type]);
 
   const middlearray = ["Following", "Followers", "Likes"];
-  const icons = [faHeart, faComment];
+  const tiktokicons = [
+    faHeart,
+    faComment,
+    faPlayCircle,
+    faShareSquare,
+    faDownload,
+    faChartLine,
+  ];
+  const instagramicons = [faHeart, faComment, faChartLine];
 
   const handleSliderButtonClick = () => {
     setShowSlider(!showSlider);
-  };
-  const handleFilterButtonClick = () => {
     setIsFiltered(!isFiltered);
   };
 
-  const handleButtonClick = () => {
-    handleFilterButtonClick();
-    handleSliderButtonClick();
-  };
+  const tiktokfields = [
+    { label: "Date", value: "date" },
+    { label: "Likes", value: "likes" },
+    { label: "Comments", value: "comments" },
+    { label: "Share Count", value: "sharecount" },
+    { label: "Download Count", value: "downloadcount" },
+    { label: "Play Count", value: "playcount" },
+    { label: "Engagement", value: "engagement" },
+  ];
+
+  const instagramfields = [
+    { label: "Date", value: "date" },
+    { label: "Likes", value: "likes" },
+    { label: "Comments", value: "comments" },
+    { label: "Engagement", value: "engagement" },
+  ];
 
   return (
     <>
-      <div
-        className={`slider-containerr ${showSlider ? "show" : "hide"}`}
-        // {`slider-container ${showSlider ? "show" : "hide"}`}
-      >
-        {fieldsToDisplay.map((item) => (
-          <>
-            <div className="newslidercontainer">
-              <div className="pslider">{item.name}</div>
-              <div className="psliderr">
-                <Slidercomponent
-                  value1={item.value1}
-                  value2={item.value2}
-                  onChange1={item.handlechange1}
-                  onChange2={item.handlechange2}
-                  min={item.min}
-                  max={item.max}
-                />
-              </div>
-            </div>
-          </>
-        ))}
-        <div className="sliderbottomdate">
-          <Datecomponent
-            value1={fromDate}
-            value2={toDate}
-            onChange1={handleFromDateChange}
-            onChange2={handleToDateChange}
-          />
-        </div>
-      </div>
-      <div className={`container ${isFiltered ? "shifted-down" : ""}`}>
+      <div>
         <Header
           ontiktokclick={ontiktokclick}
           oninstagramclick={oninstagramclick}
@@ -650,7 +581,35 @@ const Tiktok = () => {
           <div className="colorrize">{socialmedia_type}</div>
         </div>
         <Tiktokheader item={middlearray} />
-        <Filterbutton onClick={handleButtonClick} />
+        <Filterbutton onClick={handleSliderButtonClick} />
+        <div className={`slider-containerr ${showSlider ? "show" : ""}`}>
+          {fieldsToDisplay.map((item) => (
+            <>
+              <div className="newslidercontainer">
+                <div className="pslider">{item.name}</div>
+                <div className="psliderr">
+                  <Slidercomponent
+                    value1={item.value1}
+                    value2={item.value2}
+                    onChange1={item.handlechange1}
+                    onChange2={item.handlechange2}
+                    min={item.min}
+                    max={item.max}
+                  />
+                </div>
+              </div>
+            </>
+          ))}
+          <div className="sliderbottomdate">
+            <Datecomponent
+              value1={fromDate}
+              value2={toDate}
+              onChange1={handleFromDateChange}
+              onChange2={handleToDateChange}
+            />
+          </div>
+        </div>
+
         <Descending
           socialmedia_type={socialmedia_type}
           sortByPlatform={sortByPlatform}
@@ -658,17 +617,33 @@ const Tiktok = () => {
           sortOrder={sortOrder}
           sortedPosts={sortedPosts}
           handleSort={handleSort}
+          fields={
+            socialmedia_type === "tiktok"
+              ? tiktokfields
+              : socialmedia_type === "instagram"
+              ? instagramfields
+              : []
+          }
         />
 
         <div className="mainreelscontainer">
           <div className="reelscontainer">
-            {list &&
-              list.map((reel) => (
+            {sortedPosts &&
+              sortedPosts.map((reel) => (
                 <ReelsCard
                   url={reel.postlink}
                   likes={reel.likes}
                   comments={reel.comments}
-                  icons={icons}
+                  date={reel.date}
+                  sharecount={reel.sharecount}
+                  playcount={reel.playcount}
+                  downloadcount={reel.downloadcount}
+                  engagement={reel.engagement}
+                  icons={ socialmedia_type === "tiktok"
+                  ? tiktokicons
+                  : socialmedia_type === "instagram"
+                  ? instagramicons
+                  : []}
                   socialmedia_type={socialmedia_type}
                 />
               ))}

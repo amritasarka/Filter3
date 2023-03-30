@@ -5,8 +5,8 @@ import { InstagramEmbed } from "react-social-media-embed";
 import { TikTokEmbed } from "react-social-media-embed";
 
 
-const ReelsCard = ({ url, title, likes, comments, icons }) => {
-  const reactions = [likes, comments];
+const ReelsCard = ({ url, title, likes, comments, icons ,sharecount,playcount,downloadcount,engagement}) => {
+  const reactions = [likes, comments,sharecount,playcount,downloadcount,engagement];
   const [socialMedia, setSocialMedia] = React.useState(null);
 
   React.useEffect(() => {
@@ -36,7 +36,7 @@ const ReelsCard = ({ url, title, likes, comments, icons }) => {
         </div>
         <div className={reels.cardactions}>
             <div className={reels.icon}>
-              {icons.map((icon, index) => (
+            {icons.map((icon, index) => (
                 <div className={reels.cardicon} key={index}>
                   <FontAwesomeIcon icon={icon} />
                 </div>
