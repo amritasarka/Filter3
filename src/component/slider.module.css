@@ -20,19 +20,29 @@
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     position: relative;
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     background-color: #1260d4;
     border-radius: 50%;
     z-index: 1;
+    cursor: pointer;
+    
   }
   
   input[type="range"]::-webkit-slider-runnable-track {
     position: relative;
     height: 10px;
     border-radius: 5px;
-    background-color: #f2e4e4;
+    background-color: #f0e6e6;
   }
+
+
+
+
+
+
+
+
   
   .slider-track {
     position: absolute;

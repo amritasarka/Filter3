@@ -41,7 +41,7 @@ const Tiktok = () => {
     const filteredPosts = newmap.filter(
       (post) => post.platform === sortByPlatform
     );
-    const sortedFilteredPosts = newmap.sort((a, b) => {
+    const sortedFilteredPosts = sortedPosts.sort((a, b) => {
       for (const field of sortByFields) {
         if (a[field] < b[field]) {
           return sortOrder === "ascending" ? -1 : 1;
@@ -393,6 +393,7 @@ const Tiktok = () => {
   console.log("this is list value", list);
 
  
+ 
 
   const commonFields = [
     {
@@ -474,6 +475,10 @@ const Tiktok = () => {
     setSocialmedia_type("instagram");
     console.log("socialmedia_type", socialmedia_type);
   };
+
+ 
+
+
 
   const apply = () => {
     const onedimension = [];

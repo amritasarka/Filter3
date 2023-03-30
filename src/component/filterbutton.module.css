@@ -94,7 +94,8 @@
  .icon {
   display: flex;
   justify-content: space-between;
-  width: 100px;
+  width: 200px;
+  gap:10px;
   
 } 
 
@@ -128,9 +129,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 12px; 
-  width:60%
+  width:60%;
+  margin-right: 10%;
 }
 
 .datepicker label {

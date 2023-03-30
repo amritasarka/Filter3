@@ -62,6 +62,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 3%;
 }
 
 .sliderr {
@@ -120,7 +121,7 @@
   height: 400px;
   width: 400px;
   margin-left: 35%;
-  padding: 20px;
+  margin-bottom: 2%;
   margin-top: 1%;
 }
 .slider-containerr {
@@ -157,5 +158,6 @@
 }
 .sliderbottomdate {
   margin-right: 60%;
+  
   /* margin-top: 3%; */
 }

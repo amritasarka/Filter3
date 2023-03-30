@@ -19,6 +19,7 @@ const ReelsCard = ({ url, title, likes, comments, icons ,sharecount,playcount,do
     }
   }, [url]);
 
+  const component = (url.includes('instagram.com')) ? <InstagramEmbed url={url} maxWidth={500} /> : <TikTokEmbed url={url} />;
   
   return (
     <>
@@ -26,7 +27,7 @@ const ReelsCard = ({ url, title, likes, comments, icons ,sharecount,playcount,do
       <div className={reels.card}>
         <div className={reels.cardmedia}>
         <div style={{ overflow: "hidden" }}>
-        {socialMedia}
+        {component}
            </div>
         </div>
        

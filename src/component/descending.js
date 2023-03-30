@@ -1,5 +1,6 @@
 import React from "react";
 import ascending from "./descending.module.css";
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 const Descending = ({
   socialmedia_type,
@@ -43,7 +44,7 @@ const Descending = ({
 
         <div>
         {fields.map((field) => (
-          <button
+          <span
             className={ascending.ascendingdescendingbutton}
             key={field.value}
             onClick={() => handleSort([socialmedia_type, [field.value]])}
@@ -52,7 +53,7 @@ const Descending = ({
             {sortByFields.includes(field.value) && (
               <span>{sortOrder === "ascending" ? " ⬆️" : " ⬇️"}</span>
             )}
-          </button>
+          </span>
         ))}
       </div>
 
