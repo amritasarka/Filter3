@@ -43,7 +43,7 @@ const ReelsCard = ({ url, title, likes, comments, icons ,sharecount,playcount,do
                 </div>
               ))}
             </div>
-            <div className={reels.icon}>
+            <div className={reels.iconn}>
               {reactions.map((item) => (
                 <div className={reels.cardlikes}>{item}</div>
               ))}

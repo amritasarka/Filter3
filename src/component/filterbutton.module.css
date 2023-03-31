@@ -93,11 +93,19 @@
 } 
  .icon {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 200px;
   gap:10px;
+  justify-content: center;
   
 } 
+.iconn{
+  display: flex;
+  width: 200px;
+  gap:4px;
+  justify-content: center;
+
+}
 
 .headercontainer {
   display: flex;

@@ -38,10 +38,10 @@ const Tiktok = () => {
   const [sortedPosts, setSortedPosts] = useState([]);
 
   useEffect(() => {
-    const filteredPosts = newmap.filter(
-      (post) => post.platform === sortByPlatform
-    );
-    const sortedFilteredPosts = sortedPosts.sort((a, b) => {
+    // const filteredPosts = newmap.filter(
+    //   (post) => post.platform === sortByPlatform
+    // );
+    const sortedFilteredPosts = newmap.sort((a, b) => {
       for (const field of sortByFields) {
         if (a[field] < b[field]) {
           return sortOrder === "ascending" ? -1 : 1;
