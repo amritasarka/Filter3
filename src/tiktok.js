@@ -392,9 +392,6 @@ const Tiktok = () => {
 
   console.log("this is list value", list);
 
- 
- 
-
   const commonFields = [
     {
       id: 1,
@@ -475,10 +472,6 @@ const Tiktok = () => {
     setSocialmedia_type("instagram");
     console.log("socialmedia_type", socialmedia_type);
   };
-
- 
-
-
 
   const apply = () => {
     const onedimension = [];
@@ -586,7 +579,25 @@ const Tiktok = () => {
           <div className="colorrize">{socialmedia_type}</div>
         </div>
         <Tiktokheader item={middlearray} />
-        <Filterbutton onClick={handleSliderButtonClick} />
+        <Filterbutton onClick={handleSliderButtonClick}  />
+
+        <Descending 
+          
+          socialmedia_type={socialmedia_type}
+          sortByPlatform={sortByPlatform}
+          sortByFields={sortByFields}
+          sortOrder={sortOrder}
+          sortedPosts={sortedPosts}
+          handleSort={handleSort}
+          fields={
+            socialmedia_type === "tiktok"
+              ? tiktokfields
+              : socialmedia_type === "instagram"
+              ? instagramfields
+              : []
+          }
+        />
+
         <div className={`slider-containerr ${showSlider ? "show" : ""}`}>
           {fieldsToDisplay.map((item) => (
             <>
@@ -615,22 +626,6 @@ const Tiktok = () => {
           </div>
         </div>
 
-        <Descending
-          socialmedia_type={socialmedia_type}
-          sortByPlatform={sortByPlatform}
-          sortByFields={sortByFields}
-          sortOrder={sortOrder}
-          sortedPosts={sortedPosts}
-          handleSort={handleSort}
-          fields={
-            socialmedia_type === "tiktok"
-              ? tiktokfields
-              : socialmedia_type === "instagram"
-              ? instagramfields
-              : []
-          }
-        />
-
         <div className="mainreelscontainer">
           <div className="reelscontainer">
             {sortedPosts &&
@@ -644,11 +639,13 @@ const Tiktok = () => {
                   playcount={reel.playcount}
                   downloadcount={reel.downloadcount}
                   engagement={reel.engagement}
-                  icons={ socialmedia_type === "tiktok"
-                  ? tiktokicons
-                  : socialmedia_type === "instagram"
-                  ? instagramicons
-                  : []}
+                  icons={
+                    socialmedia_type === "tiktok"
+                      ? tiktokicons
+                      : socialmedia_type === "instagram"
+                      ? instagramicons
+                      : []
+                  }
                   socialmedia_type={socialmedia_type}
                 />
               ))}

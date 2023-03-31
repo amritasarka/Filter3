@@ -12,6 +12,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin-bottom: 2%;
 }
 
 .filterbutton:hover {
@@ -91,21 +92,59 @@
 .cardcomments i {
   margin-right: 20px;
 } 
- .icon {
+ .icon{
   display: flex;
-  /* justify-content: space-between; */
-  width: 200px;
-  gap:10px;
-  justify-content: center;
-  
-} 
-.iconn{
-  display: flex;
-  width: 200px;
-  gap:4px;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  height: 30%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
 
 }
+
+
+.iconn{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  height: 30%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+
+}
+ 
+
+
+
+
 
 .headercontainer {
   display: flex;
