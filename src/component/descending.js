@@ -1,6 +1,7 @@
 import React from "react";
 import ascending from "./descending.module.css";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {  faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 const Descending = ({
   socialmedia_type,
@@ -15,34 +16,9 @@ const Descending = ({
   return (
     <>
       <div>
-        {/* <div >
-          {socialmedia_type === "tiktok"
-            ? tiktokFields.map((field) => (
-                <button className={ascending.ascendingdescendingbutton}
-                  key={field.value}
-                  onClick={() => handleSort([socialmedia_type, [field.value]])}
-                >
-                  {field.label}
-                  {sortByFields.includes(field.value) && (
-                    <span>{sortOrder === "ascending" ? " ⬆️" : " ⬇️"}</span>
-                  )}
-                </button>
-              ))
-            : instagramFields.map((field) => (
-                <button
-                className={ascending.ascendingdescendingbutton}
-                  key={field.value}
-                  onClick={() => handleSort([socialmedia_type, [field.value]])}
-                >
-                  {field.label}
-                  {sortByFields.includes(field.value) && (
-                    <span>{sortOrder === "ascending" ? " ⬆️" : " ⬇️"}</span>
-                  )}
-                </button>
-              ))}
-        </div> */}
+        
 
-        <div>
+        <div className={ascending.ascendingdescendingmainbutton}>
         {fields.map((field) => (
           <span
             className={ascending.ascendingdescendingbutton}
@@ -51,7 +27,11 @@ const Descending = ({
           >
             {field.label}
             {sortByFields.includes(field.value) && (
-              <span>{sortOrder === "ascending" ? " ⬆️" : " ⬇️"}</span>
+              <span>{sortOrder === "ascending" ? (
+                <FontAwesomeIcon icon={faArrowUp} className="sort-icon" />
+              ):(
+                <FontAwesomeIcon icon={faArrowDown} className="sort-icon" />
+              )}</span>
             )}
           </span>
         ))}

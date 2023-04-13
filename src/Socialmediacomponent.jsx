@@ -17,10 +17,17 @@ import tiktok from "./tiktokData.json";
 
 import Datecomponent from "./component/datecomponent";
 
-import "./tiktok.css";
+import "./socialmediacomponent.css";
 import Descending from "./component/descending";
+import {
+  socialmedia_fieldmapping,
+  socialmedia_data,
+  middlearray,
+  tiktokfields,
+  instagramfields,
+} from "./component/constant";
 
-const Tiktok = () => {
+const Socialmediacomponent = () => {
   const [showSlider, setShowSlider] = useState(false);
   const [isFiltered, setIsFiltered] = useState(false);
 
@@ -53,7 +60,7 @@ const Tiktok = () => {
     });
 
     setSortedPosts(sortedFilteredPosts);
-  }, [sortByPlatform, sortByFields, sortOrder]);
+  }, [sortByPlatform, sortByFields, sortOrder, newmap]);
 
   const handleSort = (platformFields) => {
     const [platform, fields] = platformFields;
@@ -75,27 +82,7 @@ const Tiktok = () => {
     // add other social media platforms here
   };
 
-  const socialmedia_fieldmapping = {
-    tiktok: {
-      likes: "digg_count",
-      followers: "followers",
-      comments: "comment_count",
-      postlink: "url",
-      date: "date",
-      playcount: "play_count",
-      sharecount: "share_count",
-      downloadcount: "download_count",
-      engagement: "engagement",
-    },
-    instagram: {
-      likes: "like_count",
-      followers: "followers",
-      comments: "newCommentCount",
-      postlink: "postLink",
-      date: "date",
-      engagement: "engagement",
-    },
-  };
+
 
   const likesarr = [];
   const commentsarr = [];
@@ -535,7 +522,7 @@ const Tiktok = () => {
     apply();
   }, [socialmedia_type]);
 
-  const middlearray = ["Following", "Followers", "Likes"];
+  // const middlearray = ["Following", "Followers", "Likes"];
   const tiktokicons = [
     faHeart,
     faComment,
@@ -551,22 +538,7 @@ const Tiktok = () => {
     setIsFiltered(!isFiltered);
   };
 
-  const tiktokfields = [
-    { label: "Date", value: "date" },
-    { label: "Likes", value: "likes" },
-    { label: "Comments", value: "comments" },
-    { label: "Share Count", value: "sharecount" },
-    { label: "Download Count", value: "downloadcount" },
-    { label: "Play Count", value: "playcount" },
-    { label: "Engagement", value: "engagement" },
-  ];
-
-  const instagramfields = [
-    { label: "Date", value: "date" },
-    { label: "Likes", value: "likes" },
-    { label: "Comments", value: "comments" },
-    { label: "Engagement", value: "engagement" },
-  ];
+  
 
   return (
     <>
@@ -579,10 +551,9 @@ const Tiktok = () => {
           <div className="colorrize">{socialmedia_type}</div>
         </div>
         <Tiktokheader item={middlearray} />
-        <Filterbutton onClick={handleSliderButtonClick}  />
+        <Filterbutton onClick={handleSliderButtonClick} />
 
-        <Descending 
-          
+        <Descending
           socialmedia_type={socialmedia_type}
           sortByPlatform={sortByPlatform}
           sortByFields={sortByFields}
@@ -656,4 +627,4 @@ const Tiktok = () => {
   );
 };
 
-export default Tiktok;
+export default Socialmediacomponent;

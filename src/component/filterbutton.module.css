@@ -40,14 +40,12 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  
 }
 .cardmedia {
   position: relative;
   overflow: hidden;
-  max-height: 400px; 
+  max-height: 400px;
   width: 100%;
-  
 }
 /* .cardmedia {
   width: 100%;
@@ -70,16 +68,15 @@
   height: 30%;
 }
 
-
-.cardactions {
+/* .cardactions {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   
-}
+} */
 
-.cardlikes,
+/* .cardlikes,
 .cardcomments {
   display: flex;
   align-items: center;
@@ -91,13 +88,14 @@
 .cardlikes i,
 .cardcomments i {
   margin-right: 20px;
-} 
- .icon{
+}  */
+
+.icon{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 60%;
+  width: 80%;
   height: 30%;
   margin: 10px;
   padding: 10px;
@@ -122,7 +120,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 60%;
+  width: 80%;
   height: 30%;
   margin: 10px;
   padding: 10px;
@@ -142,8 +140,7 @@
 }
  
 
-
-
+ 
 
 
 .headercontainer {
@@ -168,37 +165,11 @@
   .card {
     margin: 10px;
     margin-bottom: 5%;
-    
   }
 }
 
-.datepicker {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 12px; 
-  width:60%;
-  margin-right: 10%;
-}
-
-.datepicker label {
-  margin-right: 5px;
-}
-
-.datepicker input {
-  padding: 3px; 
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  color: #555;
-  font-size: 12px; 
-  width: 100px; 
-}
 .socialmediaembed {
   max-height: 500px;
   max-width: 500px;
   overflow: auto;
 }
-
-

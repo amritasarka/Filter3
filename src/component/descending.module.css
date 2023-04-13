@@ -6,7 +6,7 @@
     cursor: pointer; */
     font-size: 16px;
     margin: 5px;
-    margin-top: 60%;
+    /* margin-top: 60%; */
     padding: 10px 20px;
     transition: all 0.3s ease;
     
@@ -15,4 +15,15 @@
   
   .ascendingdescendingbutton:hover {
     background-color: #dddddd;
+  }
+  .ascendingdescendingmainbutton{
+   margin-right: 100px;
+    
+  }
+
+  .ascendingdescendingmainbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 100px;
   }
